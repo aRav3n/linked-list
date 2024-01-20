@@ -96,5 +96,5 @@ function linkedList() {
   // insertAt(value, index) - inserts node at index
   // removeAt(index) - removes node at index
 
-  return { rootNode, append, prepend, size, head, tail, at };
+  return { rootNode, append, prepend, size, head, tail, at, pop };
 }
