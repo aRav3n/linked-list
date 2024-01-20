@@ -51,6 +51,9 @@ function linkedList() {
     traverseList(rootNode);
   };
   // head - returns first node in the list
+  const head = function () {
+    return rootNode;
+  };
   // tail - returns last node in list
   // at(index) - returns node at index
   // pop
@@ -60,5 +63,5 @@ function linkedList() {
   // insertAt(value, index) - inserts node at index
   // removeAt(index) - removes node at index
 
-  return { rootNode, append, prepend };
+  return { rootNode, append, prepend, size, head };
 }
