@@ -111,7 +111,7 @@ function linkedList() {
     return null;
   };
   // toString - return list as a string: ( value ) -> ( value ) -> null
-  const toString = function() {
+  const toString = function () {
     const length = size();
     if (length === 0) {
       return "Yo! There's nothing in this linked list!";
@@ -119,13 +119,37 @@ function linkedList() {
     let string = "";
     for (let i = 0; i < length; i++) {
       const value = at(i).value;
-      string += `( ${value} ) -> `
+      string += `( ${value} ) -> `;
     }
     string += "null";
     return string;
-  }
+  };
   // insertAt(value, index) - inserts node at index
+  const insertAt = function (value, index) {
+    if (index === 0) {
+      prepend(value);
+    } else if (index >= size()) {
+      append(value);
+    } else {
+      const parentNode = at(index - 1);
+      const childNode = at(index);
+      const newNode = node(value, childNode);
+      parentNode.nextNode = newNode;
+    }
+  };
   // removeAt(index) - removes node at index
 
-  return { append, prepend, size, head, tail, at, pop, contains, find, toString };
+  return {
+    append,
+    prepend,
+    size,
+    head,
+    tail,
+    at,
+    pop,
+    contains,
+    find,
+    toString,
+    insertAt,
+  };
 }
