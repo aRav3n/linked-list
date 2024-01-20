@@ -24,6 +24,15 @@ function linkedList() {
     }
   };
   // prepend(value)
+  const prepend = function (value) {
+    if (rootNode.value === null) {
+      rootNode = node(value);
+    } else {
+      const oldRootNode = rootNode;
+      const newRootNode = node(value, oldRootNode);
+      rootNode = newRootNode;
+    }
+  };
   // size - returns list length
   // head - returns first node in the list
   // tail - returns last node in list
@@ -35,5 +44,5 @@ function linkedList() {
   // insertAt(value, index) - inserts node at index
   // removeAt(index) - removes node at index
 
-  return { rootNode, append };
+  return { rootNode, append, prepend };
 }
