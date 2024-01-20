@@ -28,12 +28,12 @@ function linkedList() {
   const prepend = function (value) {
     if (rootNode.value === null) {
       rootNode = node(value);
+      return true;
     } else {
       const oldRootNode = rootNode;
       const newRootNode = node(value, oldRootNode);
       rootNode = newRootNode;
     }
-    return true;
   };
   // size - returns list length
   const size = function () {
@@ -84,17 +84,26 @@ function linkedList() {
     return nodeAt;
   };
   // pop
-  const pop = function() {
+  const pop = function () {
     const lastNode = at(size() - 1);
     const secondToLastNode = at(lastNodeIndex - 1);
     lastNode.value = null;
     secondToLastNode.nextNode = null;
   };
   // contains(value) - search for value, returns a boolean
+  const contains = function (value) {
+    const length = size();
+    for (let i = 0; i < length; i++) {
+      if (at(i).value === value) {
+        return true;
+      }
+    }
+    return false;
+  };
   // find(value) - if value in list then return index of node, else return null
   // toString - return list as a string: ( value ) -> ( value ) -> null
   // insertAt(value, index) - inserts node at index
   // removeAt(index) - removes node at index
 
-  return { rootNode, append, prepend, size, head, tail, at, pop };
+  return { rootNode, append, prepend, size, head, tail, at, pop, contains };
 }
