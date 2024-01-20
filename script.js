@@ -136,10 +136,20 @@ function linkedList() {
       const newNode = node(value, childNode);
       parentNode.nextNode = newNode;
     }
+    return true;
   };
   // removeAt(index) - removes node at index
+  const removeAt = function (index) {
+    const parentNode = at(index - 1);
+    const childNode = at(index + 1);
+    at(index).value = null;
+    at(index).nextNode = null;
+    parentNode.nextNode = childNode;
+    return true;
+  };
 
   return {
+    rootNode,
     append,
     prepend,
     size,
@@ -151,5 +161,6 @@ function linkedList() {
     find,
     toString,
     insertAt,
+    removeAt,
   };
 }
