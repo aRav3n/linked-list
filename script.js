@@ -10,14 +10,13 @@ function node(value, nextNode) {
 }
 
 // LinkedList factory
-function linkedList() {
+const linkedList = (() => {
   let rootNode = node();
   // append(value)
   const append = function (value, currentNode) {
     if (!currentNode) {
       append(value, rootNode);
-    }
-    if (currentNode.value === null) {
+    } else if (currentNode.value === null) {
       currentNode = node(value);
     } else if (currentNode.nextNode === null) {
       currentNode.nextNode = node(value);
@@ -163,9 +162,10 @@ function linkedList() {
     insertAt,
     removeAt,
   };
-}
+})();
 
 // test section
+console.log("Let the tests begin!");
 linkedList.append(3);
 linkedList.prepend(2);
 const size = linkedList.size();
