@@ -48,7 +48,8 @@ function linkedList() {
       console.log(counter);
       return counter;
     };
-    traverseList(rootNode);
+    const length = traverseList(rootNode);
+    return length;
   };
   // head - returns first node in the list
   const head = function () {
@@ -79,9 +80,16 @@ function linkedList() {
       );
       return false;
     };
-    traverseList(rootNode);
+    const nodeAt = traverseList(rootNode);
+    return nodeAt;
   };
   // pop
+  const pop = function() {
+    const lastNode = at(size() - 1);
+    const secondToLastNode = at(lastNodeIndex - 1);
+    lastNode.value = null;
+    secondToLastNode.nextNode = null;
+  };
   // contains(value) - search for value, returns a boolean
   // find(value) - if value in list then return index of node, else return null
   // toString - return list as a string: ( value ) -> ( value ) -> null
