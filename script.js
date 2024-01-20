@@ -111,8 +111,21 @@ function linkedList() {
     return null;
   };
   // toString - return list as a string: ( value ) -> ( value ) -> null
+  const toString = function() {
+    const length = size();
+    if (length === 0) {
+      return "Yo! There's nothing in this linked list!";
+    }
+    let string = "";
+    for (let i = 0; i < length; i++) {
+      const value = at(i).value;
+      string += `( ${value} ) -> `
+    }
+    string += "null";
+    return string;
+  }
   // insertAt(value, index) - inserts node at index
   // removeAt(index) - removes node at index
 
-  return { append, prepend, size, head, tail, at, pop, contains, find };
+  return { append, prepend, size, head, tail, at, pop, contains, find, toString };
 }
