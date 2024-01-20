@@ -55,6 +55,15 @@ function linkedList() {
     return rootNode;
   };
   // tail - returns last node in list
+  const tail = function() {
+    const traverseList = function (currentNode) {
+      if (currentNode.nextNode !== null) {
+        traverseList(currentNode.nextNode);
+      }
+      return currentNode;
+    };
+    traverseList(rootNode);
+  }
   // at(index) - returns node at index
   // pop
   // contains(value) - search for value, returns a boolean
@@ -63,5 +72,5 @@ function linkedList() {
   // insertAt(value, index) - inserts node at index
   // removeAt(index) - removes node at index
 
-  return { rootNode, append, prepend, size, head };
+  return { rootNode, append, prepend, size, head, tail };
 }
