@@ -21,6 +21,7 @@ function linkedList() {
       currentNode = node(value);
     } else if (currentNode.nextNode === null) {
       currentNode.nextNode = node(value);
+      return;
     }
   };
   // prepend(value)
@@ -32,8 +33,23 @@ function linkedList() {
       const newRootNode = node(value, oldRootNode);
       rootNode = newRootNode;
     }
+    return;
   };
   // size - returns list length
+  const size = function () {
+    let counter = 0;
+    const traverseList = function (currentNode) {
+      if (currentNode.value !== null) {
+        counter++;
+      }
+      if (currentNode.nextNode !== null) {
+        traverseList(currentNode.nextNode);
+      }
+      console.log(counter);
+      return counter;
+    };
+    traverseList(rootNode);
+  };
   // head - returns first node in the list
   // tail - returns last node in list
   // at(index) - returns node at index
