@@ -101,9 +101,18 @@ function linkedList() {
     return false;
   };
   // find(value) - if value in list then return index of node, else return null
+  const find = function (value) {
+    const length = size();
+    for (let i = 0; i < length; i++) {
+      if (at(i).value === value) {
+        return i;
+      }
+    }
+    return null;
+  };
   // toString - return list as a string: ( value ) -> ( value ) -> null
   // insertAt(value, index) - inserts node at index
   // removeAt(index) - removes node at index
 
-  return { rootNode, append, prepend, size, head, tail, at, pop, contains };
+  return { append, prepend, size, head, tail, at, pop, contains, find };
 }
