@@ -10,7 +10,7 @@ function node(value, nextNode) {
 }
 
 // LinkedList factory
-const linkedList = function() {
+const linkedList = function () {
   let rootNode = node();
   // append(value)
   const append = function (value, currentNode) {
@@ -44,7 +44,6 @@ const linkedList = function() {
       if (currentNode.nextNode !== null) {
         traverseList(currentNode.nextNode);
       }
-      console.log(counter);
       return counter;
     };
     const length = traverseList(rootNode);
@@ -167,17 +166,19 @@ const linkedList = function() {
 const newList = linkedList();
 
 // test section
+const logResult = function (valueName, returnedValue, expectedValue) {
+  const string = `${valueName} should be ${expectedValue}, is: ${returnedValue}`;
+  console.log(string);
+};
+
 console.log("Let the tests begin!");
 newList.append(3);
+logResult("initial head", newList.head().value, 3);
 newList.prepend(2);
-const size = newList.size();
-console.log(size);
-const valueAtHead = newList.head().value;
-console.log(`head value is ${valueAtHead} (should be 2)`);
-const valueAtTail = newList.tail().value;
-console.log(`value at tail is ${valueAtTail} (should be 3)`);
-const valueAtOne = newList.at(1);
-console.log(`value at index 1 is ${valueAtOne} (should be 3)`);
+logResult("new head", newList.head().value, 2);
+logResult("size", newList.size(), 2);
+logResult("tail", newList.tail().value, 3);
+logResult("index 1", newList.at(1).value, 3);
 newList.pop();
 if (!newList.contains(3)) {
   console.log("success, last node popped off");
@@ -186,13 +187,9 @@ newList.append(5);
 if (newList.contains(5)) {
   console.log("yes, contains 5; added successfully");
 }
-const indexOfFive = newList.find(5);
-console.log(`index of 5 should be 1 and is: ${indexOfFive}`);
-const stringOfList = newList.toString();
-console.log(`string should be 2 then 5 and is: ${stringOfList}`);
+logResult("index of 5", newList.find(5), 1);
+logResult("string", newList.toString(), "2 then 5");
 newList.insertAt(3, 1);
-const newString = newList.toString();
-console.log(`new string should be 2, 3, 5 and is: ${newString}`);
+logResult("new string", newList.toString(), "2, 3, 5");
 newList.removeAt(1);
-const finalString = newList.toString();
-console.log(`string should be 2 then 5 and is: ${finalString}`);
+logResult("final string", newList.toString(), "2, 5");
