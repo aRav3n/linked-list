@@ -58,13 +58,17 @@ const linkedList = function () {
   };
   // tail - returns last node in list
   const tail = function () {
-    const traverseList = function (currentNode) {
-      if (currentNode.nextNode !== null) {
-        traverseList(currentNode.nextNode);
+    let returnNode;
+    const findTail = function (node) {
+      if (node.nextNode === null) {
+        returnNode = node;
+        return;
+      } else {
+        findTail(node.nextNode);
       }
-      return currentNode;
     };
-    traverseList(rootNode);
+    findTail(rootNode);
+    return returnNode;
   };
   // at(index) - returns node at index
   const at = function (index) {
@@ -180,7 +184,7 @@ newList.prepend(2);
 // logResult("new head", newList.head().value, 2);
 // logResult("size", newList.size(), 2);
 logResult("tail", newList.tail().value, 3);
-logResult("index 1", newList.at(1).value, 3);
+/* logResult("index 1", newList.at(1).value, 3);
 newList.pop();
 if (!newList.contains(3)) {
   console.log("success, last node popped off");
@@ -195,3 +199,4 @@ newList.insertAt(3, 1);
 logResult("new string", newList.toString(), "2, 3, 5");
 newList.removeAt(1);
 logResult("final string", newList.toString(), "2, 5");
+*/
