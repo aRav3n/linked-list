@@ -72,26 +72,22 @@ const linkedList = function () {
   };
   // at(index) - returns node at index
   const at = function (index) {
-    let currentPosition = 0;
-    const traverseList = function (currentNode) {
-      if (currentPosition === index) {
-        return currentNode;
-      } else if (currentNode.nextNode !== null) {
-        currentPosition++;
-        traverseList(currentNode.nextNode);
+    let returnNode;
+    let currentNode = rootNode;
+    for (let i = 0; i < size(); i++) {
+      if (i === index) {
+        returnNode = currentNode;
+      } else {
+        const nextNode = currentNode.nextNode;
+        currentNode = nextNode;
       }
-      console.log(
-        `Whoops, looks like ${currentPosition} is the highest position in this list`
-      );
-      return false;
-    };
-    const nodeAt = traverseList(rootNode);
-    return nodeAt;
+    }
+    return returnNode;
   };
   // pop
   const pop = function () {
     const lastNode = at(size() - 1);
-    const secondToLastNode = at(lastNodeIndex - 1);
+    const secondToLastNode = at(size() - 2);
     lastNode.value = null;
     secondToLastNode.nextNode = null;
   };
@@ -172,20 +168,22 @@ const linkedList = function () {
 
 const newList = linkedList();
 
-// test section
+/* test section
 const logResult = function (valueName, returnedValue, expectedValue) {
   const string = `${valueName} should be ${expectedValue}, is: ${returnedValue}`;
   console.log(string);
 };
 
+console.log("*** begin tests ***");
 newList.append(3);
-// logResult("initial head", newList.head().value, 3);
+logResult("initial head", newList.head().value, 3);
 newList.prepend(2);
-// logResult("new head", newList.head().value, 2);
-// logResult("size", newList.size(), 2);
+logResult("new head", newList.head().value, 2);
+logResult("size", newList.size(), 2);
 logResult("tail", newList.tail().value, 3);
-/* logResult("index 1", newList.at(1).value, 3);
+logResult("value at index 1", newList.at(1).value, 3);
 newList.pop();
+logResult("size", newList.size(), 1);
 if (!newList.contains(3)) {
   console.log("success, last node popped off");
 }
@@ -199,4 +197,5 @@ newList.insertAt(3, 1);
 logResult("new string", newList.toString(), "2, 3, 5");
 newList.removeAt(1);
 logResult("final string", newList.toString(), "2, 5");
+console.log("*** tests complete ***");
 */
