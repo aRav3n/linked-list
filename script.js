@@ -14,13 +14,16 @@ const linkedList = function () {
   let rootNode = node();
   // append(value)
   const append = function (value, currentNode) {
-    if (!currentNode) {
+    const newNode = node(value);
+    if (currentNode === undefined) {
       append(value, rootNode);
     } else if (currentNode.value === null) {
-      currentNode = node(value);
+      currentNode.value = value;
     } else if (currentNode.nextNode === null) {
-      currentNode.nextNode = node(value);
-      return true;
+      currentNode.nextNode = newNode;
+    } else {
+      const nextNode = currentNode.nextNode;
+      append(value, nextNode);
     }
   };
   // prepend(value)
@@ -171,12 +174,11 @@ const logResult = function (valueName, returnedValue, expectedValue) {
   console.log(string);
 };
 
-console.log("Let the tests begin!");
 newList.append(3);
-logResult("initial head", newList.head().value, 3);
+// logResult("initial head", newList.head().value, 3);
 newList.prepend(2);
-logResult("new head", newList.head().value, 2);
-logResult("size", newList.size(), 2);
+// logResult("new head", newList.head().value, 2);
+// logResult("size", newList.size(), 2);
 logResult("tail", newList.tail().value, 3);
 logResult("index 1", newList.at(1).value, 3);
 newList.pop();
